@@ -1,0 +1,12 @@
+<template>
+    <lightning-card title="Search Accounts">
+        <lightning-input type="search" value={searchString} placeholder="Enter Account Name here" onchange={handleOnChange}></lightning-input>
+    </lightning-card>
+    <template if:true={accounts.data}>
+        <lightning-datatable columns={columns} data={accounts.data} key-field="Id">
+        </lightning-datatable>
+    </template>
+    <template if:true={accounts.error}>
+        <p>Something Went Wrong.Please Contact Admin.</p>
+    </template>
+</template>
