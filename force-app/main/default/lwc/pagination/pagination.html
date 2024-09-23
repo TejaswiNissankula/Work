@@ -1,0 +1,22 @@
+<template>
+    <lightning-layout class="slds-var-m-vertical_medium" horizontal-align="center">
+        <lightning-layout-item>
+            <lightning-button  label ="Previous" variant="brand" icon-name="utiltiy:cheveronleft"  onclick={handlePrevious} disabled={disablePrev}></lightning-button>
+        </lightning-layout-item>
+        <lightning-layout-item flexibility="grow" size="2" class="slds-text-title_caps">
+            <span class="slds-text-align_center">{displayPageDetails}</span>
+            <!--
+           <template if:true={dpd_tPagesLEFive}>
+                <template for:each={buttonArrayLF} for:item="btnNo">
+                    <lightning-button key={btnNo} label={btnNo} value={btnNo} onclick={handleButtonOnClick}></lightning-button>
+                </template>
+           </template>
+           <template if:false={dpd_tPagesLEFive}>
+
+           </template> -->
+        </lightning-layout-item>
+        <lightning-layout-item>
+            <lightning-button label="Next" variant="brand" icon-name="utiltiy:cheveronright"  onclick={handleNext} disabled={disableNxt}></lightning-button>
+        </lightning-layout-item>
+    </lightning-layout>
+</template>

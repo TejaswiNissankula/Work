@@ -1,12 +1,24 @@
 <template>
     <lightning-card title="Search Accounts">
-        <lightning-input type="search" value={searchString} placeholder="Enter Account Name here" onchange={handleOnChange}></lightning-input>
+        <div class="slds-grid slds-gutters">
+            <lightning-input class="slds-col slds-size_2-of-3 slds-var-m-left_large" type="search" value={searchString} placeholder="Enter Account Name here" onchange={handleSearchKeyChange}></lightning-input>
+        </div>
     </lightning-card>
-    <template if:true={accounts.data}>
-        <lightning-datatable columns={columns} data={accounts.data} key-field="Id">
-        </lightning-datatable>
+    <template if:true={result}>
+        <div class="body">
+            <lightning-datatable columns={columns} data={result} key-field="Id">
+            </lightning-datatable>
+        </div>
+        <div class="footer">
+            <c-pagination page-size={displaySize} total-records={data} ondataslice={handleDataChange}></c-pagination>
+            <!--
+            <lightning-button label="Previous" onclick={previous} disabled={hasPrevious}></lightning-button>
+            <h2>{displayPageDetails}</h2>
+            <lightning-button label="Next" onclick={next} disabled={hasNext}></lightning-button> -->
+        </div>
     </template>
-    <template if:true={accounts.error}>
+    <template if:true={error}>
         <p>Something Went Wrong.Please Contact Admin.</p>
     </template>
+
 </template>
