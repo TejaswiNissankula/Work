@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="Generate Dynamic Form Based on Selection">
+        <div class="slds-grid slds-gutters">
+            <lightning-combobox class="slds-col slds-size_2-of-3 slds-var-m-around_medium" label="Select Type Of Form To Display" value={selectedValue} options={options} onchange={handleOnChange}>
+            </lightning-combobox>
+        </div>
+        <template if:true={showInputFields}>
+            <c-input-fields-dynamic-form></c-input-fields-dynamic-form>
+        </template>
+        <template if:true={showButtons}>
+            <c-show-buttons-dynamic-form></c-show-buttons-dynamic-form>
+        </template>
+    </lightning-card>
+</template>

@@ -26,7 +26,7 @@ export default class CustomAccountListView extends LightningElement {
     accounts({data,error}){
         if(data){
             console.log('data',data)
-            this.data= data;
+            this.data= [...data];
             console.log(`data ::`,this.data);
            /* this.totalRecordsSize = this.data.length;
            this.totalPages = Math.ceil(this.totalRecordsSize/this.displaySize);
