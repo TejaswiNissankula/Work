@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import CustomAccountListView from 'c/customAccountListView';
 
 describe('c-custom-account-list-view', () => {

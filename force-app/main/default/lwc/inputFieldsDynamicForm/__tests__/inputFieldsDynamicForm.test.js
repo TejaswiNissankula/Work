@@ -1,4 +1,4 @@
-import { createElement } from 'lwc';
+import { createElement } from '@lwc/engine-dom';
 import InputFieldsDynamicForm from 'c/inputFieldsDynamicForm';
 
 describe('c-input-fields-dynamic-form', () => {
