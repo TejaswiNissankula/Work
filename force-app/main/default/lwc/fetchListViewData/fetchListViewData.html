@@ -1,0 +1,10 @@
+<template>
+    <h1>Hello Salesforce FetchListView Data</h1>
+    <lightning-card title="AccountList">
+        <template if:true={accData}>
+            <template for:each={accData} for:item="rec" >
+                <div key={rec.fields.Id.value}> {rec.fields.Name.value}</div>
+            </template>
+        </template>
+    </lightning-card>
+</template>
