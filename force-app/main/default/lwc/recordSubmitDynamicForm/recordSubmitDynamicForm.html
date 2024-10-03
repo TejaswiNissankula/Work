@@ -1,0 +1,8 @@
+<template>
+    <lightning-card title="Please fill below form" >
+        <div >
+            <lightning-input  class="slds-var-m-around_medium" type="text" value={name} onchange={handleNameChange} required message-when-value-missing="Please Enter Valid Value"></lightning-input>
+            <lightning-button class="slds-var-m-around_medium" label="Submit" onclick={handleOnClick}></lightning-button>
+        </div>
+    </lightning-card>
+</template>

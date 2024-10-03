@@ -1,5 +1,7 @@
 <template>
-    <lightning-record-edit-form object-api-name="Contact">
-        <lightning-messages></lightning-messages>
-    </lightning-record-edit-form>
+    <lightning-card title="Account Creation">
+        <lightning-record-form object-api-name={objectApiName} fields={fields} onerror={handleError} onsuccess={handleSuccess}>
+            <lightning-messages></lightning-messages>
+        </lightning-record-form>
+    </lightning-card>
 </template>

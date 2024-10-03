@@ -1,0 +1,16 @@
+<template>
+    <lightning-card title="Update Contact Record">
+        <template lwc:if={data}>
+            <div class="slds-var-m-around_medium">
+                <lightning-input label="Id" value={data.id} data-field="Id" disabled></lightning-input>
+                <lightning-input label="First Name" value={data.fields.FirstName.value} data-field="FirstName" onchange={handleChange}></lightning-input>
+                <lightning-input label="Last Name" value={data.fields.LastName.value} data-field="LastName" onchange={handleChange}></lightning-input>
+            </div>
+
+            <div class="slds-var-m-around_medium">
+                <lightning-button variant="brand" label="Update Record" onclick={handleUpdate} disabled={disabled}></lightning-button>
+            </div>
+        </template>
+        <template lwc:elseif={error}></template>
+    </lightning-card>
+</template>
