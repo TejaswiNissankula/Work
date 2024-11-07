@@ -4,9 +4,9 @@
             <lightning-input class="slds-col slds-size_2-of-3 slds-var-m-left_large" type="search" value={searchString} placeholder="Enter Account Name here" onchange={handleSearchKeyChange}></lightning-input>
         </div>
     </lightning-card>
-    <template if:true={result}>
+    <template if:true={data}>
         <div class="body">
-            <lightning-datatable columns={columns} data={result} key-field="Id">
+            <lightning-datatable columns={columns} sorted-by={sortBy} sorted-direction={sortDirection} onsort={handleSort} show-row-number-column  data={result} key-field="Id" hide-checkbox-column>
             </lightning-datatable>
         </div>
         <div class="footer">
