@@ -1,0 +1,13 @@
+<template>
+    <lightning-card>
+        <lightning-combobox name="ChildRelationShips" label="Child RelationShips" value={selectedChild} options={childRelationships} placeholder="Select a child object" onchange={handleChange}></lightning-combobox>
+        <template lwc:if={childRecords}>
+            <template for:each={childRecords} for:item="rec">
+                <div key={rec.Id}>
+                    <p>Id : {rec.Id}</p>
+                    <p>Name : {rec.Name}</p>
+                </div>
+            </template>
+        </template>
+    </lightning-card>
+</template>

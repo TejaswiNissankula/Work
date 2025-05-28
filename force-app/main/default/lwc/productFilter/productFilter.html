@@ -1,0 +1,44 @@
+<template>
+    <lightning-card title="Filters" icon-name="standard:calibration">
+        <div class="slds-var-m-around_medium">
+            <lightning-input label="Search Key" data-field="searchKey" type="search" value={searchKey} onchange={handleFilterChange}></lightning-input>
+        </div>
+        <div class="slds-var-m-around_medium">
+            <lightning-slider label="Max Price" data-field="price" min="0" max="10000" step="100" value={price} onchange={handleFilterChange}></lightning-slider>
+        </div>
+        <section class="slds-var-m-around_medium">
+            <h3 class="slds-text-title"><b>CATEGORY</b></h3>
+            <template lwc:if={categoryData}>
+                <template for:each={categoryData} for:item="category">
+                    <lightning-input key={category.value} data-field="category" data-value={category.value} label={category.label} type="checkbox" value={category.value}  checked onchange={handleFilterChange}> </lightning-input>
+                </template>
+            </template>
+            <template lwc:if={categoryError}>
+               <!--  <c-error-panel errors={categories.error}></c-error-panel> -->
+            </template>
+        </section>
+        <section class="slds-var-m-around_medium">
+            <h3 class="slds-text-title"><b>MATERIAL</b></h3>
+            <template lwc:if={materialData}>
+                <template for:each={materialData} for:item="material">
+                    <lightning-input key={material.value} data-field="material" data-value={material.value} type="checkbox" label={material.label} value={material.value}  checked onchange={handleFilterChange}> </lightning-input>
+                </template>
+            </template>
+            <template lwc:if={materialError}>
+                
+             <!--    <c-error-panel errors={materials.error}></c-error-panel> -->
+            </template>
+        </section>
+        <section class="slds-var-m-around_medium">
+            <h3 class="slds-text-title"><b>LEVEL</b></h3>
+            <template lwc:if={levelData}>
+                <template for:each={levelData} for:item="level">
+                    <lightning-input key={level.value} data-field="level" data-value={level.value} type="checkbox" label={level.label} value={level.value}  checked onchange={handleFilterChange}> </lightning-input>
+                </template>
+            </template>
+            <template lwc:if={levelError}>
+              <!--   <c-error-panel errors={levels.error}></c-error-panel> -->
+            </template>
+        </section>
+    </lightning-card>
+</template>

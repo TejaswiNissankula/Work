@@ -1,0 +1,44 @@
+<template>
+        <lightning-card icon-name="standard:apex_plugin">
+            <template lwc:if={recordId}>
+                    <span slot="title">{productName}</span>
+                    <lightning-button-icon slot="actions" icon-name="utility:expand_alt" onclick={handlePageOpen}></lightning-button-icon>
+                <div class="slds-var-m-around_x-small">
+                    <img class="slds-var-p-around_medium product" src={productImage}/>
+                </div>
+            <lightning-record-view-form record-id={recordId} object-api-name="Product__c" onload={handleRecordFormLoad} density="compact">
+                <lightning-output-field field-name={pImage} class="imageFieldClass" ></lightning-output-field>
+                <p class="slds-var-m-horizontal_medium">
+                    <lightning-output-field field-name={pCategory}></lightning-output-field>
+                    <lightning-output-field field-name={pLevel}></lightning-output-field>
+                    <lightning-output-field field-name={pMSRP}></lightning-output-field>
+                </p>
+                <section class="slds-var-m-horizontal_medium">
+                    <h2>ELECTRIC COMPONENTS</h2>
+                    <p>
+                        <lightning-output-field field-name={pBattery}></lightning-output-field>
+                        <lightning-output-field field-name={pCharger}></lightning-output-field>
+                        <lightning-output-field field-name={pMotor}></lightning-output-field>
+                    </p>
+                </section>
+                <section class="slds-var-m-horizontal_medium">
+                    <h2>FRAME</h2>
+                    <p>
+                        <lightning-output-field field-name={pMaterial}></lightning-output-field>
+                        <lightning-output-field field-name={pFork}></lightning-output-field>
+                    </p>
+                </section>
+                <section class="slds-var-m-horizontal_medium">
+                    <h2>BRAKES</h2>
+                    <p>
+                        <lightning-output-field field-name={pFront}></lightning-output-field>
+                        <lightning-output-field field-name={pRear}></lightning-output-field>
+                    </p>
+                </section>
+            </lightning-record-view-form>
+        </template>
+        <template lwc:else>
+            <h1><b>Please Select a Product to display</b></h1>
+        </template>
+    </lightning-card>
+</template>

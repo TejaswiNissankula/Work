@@ -1,0 +1,8 @@
+<template>
+    <lightning-card>
+        <div style="height:500px">
+            <lightning-datatable key-field="Id" columns={columns} data={displayRecords} sorted-by={sortBy} sorted-direction={sortDirection} onsort={handleSort} onloadmore={handleLoadMore} onrowaction={handleRowAction} draft-values={draftValues} onsave={handleSave} enable-infinite-loading></lightning-datatable>
+        </div>
+        <span class="slds-align_absolute-center">{loadMoreStatus}</span>
+    </lightning-card>
+</template>

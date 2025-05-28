@@ -1,0 +1,17 @@
+<template>
+    <lightning-modal-header label={header}></lightning-modal-header>
+    <lightning-modal-body>
+        
+        <lightning-record-form record-id={recId} object-api-name="TestData__c" mode="readonly" density="auto" layout-type="Full">
+            <!-- <div class="slds-box">
+                <lightning-output-field field-name="Name"> </lightning-output-field>
+                <lightning-output-field field-name="NumberOfEmployees__c">
+                </lightning-output-field>
+            </div> -->
+        </lightning-record-form>
+       <!-- <c-child-navigation-component rec-id={recId}></c-child-navigation-component> -->
+    </lightning-modal-body>
+    <lightning-modal-footer>
+        <lightning-button label="Close" onclick={handleClose}></lightning-button>
+    </lightning-modal-footer>
+</template>

@@ -1,0 +1,18 @@
+<template>
+    <div class="slds-card slds-var-p-around_x-small">
+        <template lwc:if={products}>
+            <div class="content">
+                <template for:each={products} for:item="product">
+                    <c-product-tile key={product.Id} selected-product={product} onselected={handleProductSelection}></c-product-tile>
+                </template>
+            </div>
+            <div class="slds-text-align_center">
+            <!-- <c-pagination></c-pagination> -->
+            </div>
+        </template>
+        <template lwc:elseif={errors}>
+            <h1>ERROR</h1>
+        <!--  <c-error-panel errors={products.error}></c-error-panel> -->
+        </template>
+    </div>
+</template>

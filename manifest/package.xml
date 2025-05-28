@@ -9,6 +9,7 @@
         <members>exceptionHandlerUtility</members>
         <members>contactTriggerHandlerTest</members>
         <members>TestDataFactory</members>
+       <members> FetchExpectionLogs</members>
         <name>ApexClass</name>
     </types>
      <types>
@@ -35,6 +36,7 @@
     </types>
     <types>
         <members>Exception_Log__c</members>
+        <members>Apex_Cursor__c</members>
         <name>CustomTab</name>
     </types>
     <types>
@@ -59,11 +61,13 @@
     </types>
     <types>
         <members>*</members>
+         <members>validateUserContextCursor</members>
         <name>LightningComponentBundle</name>
     </types>
     <types>
-        <members>*</members>
-        <name>StaticResource</name>
+        <members>Exception_App_Page</members>
+        <name>FlexiPages</name>
     </types>
+
     <version>61.0</version>
 </Package>

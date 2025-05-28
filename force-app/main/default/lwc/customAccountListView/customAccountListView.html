@@ -1,24 +1,25 @@
 <template>
     <lightning-card title="Search Accounts">
         <div class="slds-grid slds-gutters">
-            <lightning-input class="slds-col slds-size_2-of-3 slds-var-m-left_large" type="search" value={searchString} placeholder="Enter Account Name here" onchange={handleSearchKeyChange}></lightning-input>
+            <lightning-input class="slds-col slds-size_2-of-3 slds-var-m-left_large" type="search" value={searchString}
+                placeholder="Enter Account Name here" onchange={handleSearchKeyChange}></lightning-input>
         </div>
     </lightning-card>
     <template if:true={data}>
         <div class="body">
-            <lightning-datatable columns={columns} sorted-by={sortBy} sorted-direction={sortDirection} onsort={handleSort} show-row-number-column  data={result} key-field="Id" hide-checkbox-column>
+            <lightning-datatable columns={columns} sorted-by={sortBy} sorted-direction={sortDirection}
+                onsort={handleSort} show-row-number-column data={result} key-field="Id" selected-rows={globalSelectedRowIds}
+                onrowselection={handleRowSelection}>
             </lightning-datatable>
         </div>
         <div class="footer">
-            <c-pagination page-size={displaySize} total-records={data} ondataslice={handleDataChange}></c-pagination>
-            <!--
-            <lightning-button label="Previous" onclick={previous} disabled={hasPrevious}></lightning-button>
-            <h2>{displayPageDetails}</h2>
-            <lightning-button label="Next" onclick={next} disabled={hasNext}></lightning-button> -->
+            <lightning-card>
+                <c-pagination page-size={displaySize} total-records={data}
+                    ondataslice={handleDataChange}></c-pagination>
+            </lightning-card>
         </div>
     </template>
     <template if:true={error}>
         <p>Something Went Wrong.Please Contact Admin.</p>
     </template>
-
 </template>

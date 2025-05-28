@@ -1,0 +1,19 @@
+<template>
+    <lightning-card>
+        <lightning-layout>
+            <lightning-layout-item>
+                <lightning-button label="Fetch Exception Log Cursor Data" onclick={fetchExceptionLogData}></lightning-button>
+            </lightning-layout-item>
+            <lightning-layout-item>
+            <template lwc:if={fetchData}>
+                <template for:each={fetchData} for:item="item">
+                    <p key={item.id}> Name : {item.Name}  -  Owner : {item.Owner.Username} </p>
+                </template>
+            </template>
+            <template lwc:elseif={error}>
+                <p>{error}</p>
+            </template>
+            </lightning-layout-item>
+        </lightning-layout>
+</lightning-card>
+</template>

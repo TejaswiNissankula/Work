@@ -1,0 +1,16 @@
+.content{
+    
+    background-color: #ffffff;
+    padding: 8px;
+     border-radius: 0.25rem;
+}
+
+img.product{
+    height: 100px;
+    max-width: initial;
+    pointer-events: none;
+}
+.title{
+    font-weight: bold;
+    text-transform: uppercase;
+}

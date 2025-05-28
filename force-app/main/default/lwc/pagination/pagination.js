@@ -39,10 +39,11 @@ export default class Pagination extends LightningElement {
             this.updateRecords();
         //}
     }
+    /*
     handleButtonOnClick(event){
         this.currentPage = event.target.value;
         this.updateRecords();
-    }
+    }*/
     @api
     updateRecords(){
         let start = (this.currentPage-1)*this.pageSize;
@@ -50,7 +51,7 @@ export default class Pagination extends LightningElement {
         this.visibleRecords = this.records.slice(start,end);
         this.disableNxt = (this.currentPage<this.totalPages) ? false : true ; 
         this.disablePrev =this.currentPage>1 ? false:true;
-        this.dispatchEvent(new CustomEvent('dataslice',{detail:{records:this.visibleRecords}}));
+        this.dispatchEvent(new CustomEvent('dataslice',{detail:{records:this.visibleRecords,cPage : this.currentPage}}));
     }
     
 }

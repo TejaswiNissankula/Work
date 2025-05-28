@@ -1,0 +1,12 @@
+<template>
+    <a onclick={handleOnClick}>
+    <div class="content slds-var-m-around_x-small">
+        <img class="product slds-align_absolute-center" src={selectedProduct.Picture_URL__c} height="100" width="100"/>
+        <p class="title slds-align_absolute-center"> {selectedProduct.Name}</p>
+        <p class="slds-align_absolute-center">MSRP:
+            <lightning-formatted-number format-style="currency" maximum-fraction-digits="0" currency-code="USD" value={selectedProduct.MSRP__c}>
+            </lightning-formatted-number>
+        </p>
+    </div>
+    </a>
+</template>

@@ -144,22 +144,22 @@
     <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
     <deploymentStatus>Deployed</deploymentStatus>
     <enableActivities>false</enableActivities>
-    <enableBulkApi>false</enableBulkApi>
+    <enableBulkApi>true</enableBulkApi>
     <enableFeeds>false</enableFeeds>
     <enableHistory>false</enableHistory>
     <enableLicensing>false</enableLicensing>
     <enableReports>false</enableReports>
     <enableSearch>false</enableSearch>
-    <enableSharing>false</enableSharing>
-    <enableStreamingApi>false</enableStreamingApi>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
-    <label>Exception Log</label>
+    <label>Apex Cursor</label>
     <nameField>
-        <label>Exception Log Name</label>
+        <label>Cursors Name</label>
         <type>Text</type>
     </nameField>
-    <pluralLabel>Exception Logs</pluralLabel>
+    <pluralLabel>Apex Cursors</pluralLabel>
     <searchLayouts></searchLayouts>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
