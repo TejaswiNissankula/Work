@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <environments>Default</environments>
+    <interviewLabel>Order Detail Publish Platform Event Screen Flow {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Order Detail Publish Platform Event Screen Flow</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Order_Detail_Platform_Event</name>
+        <label>Create Order Detail Platform Event</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Generate_Invoice__c</field>
+            <value>
+                <elementReference>Generate_Invoice</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Order_Number__c</field>
+            <value>
+                <elementReference>Order_Number</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Order_Detail__e</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <screens>
+        <name>Order_Detail_Platform_Event_Flow</name>
+        <label>Order Detail Platform Event Flow</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Create_Order_Detail_Platform_Event</targetReference>
+        </connector>
+        <fields>
+            <name>Order_Number</name>
+            <dataType>String</dataType>
+            <fieldText>Order Number</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+        </fields>
+        <fields>
+            <name>Generate_Invoice</name>
+            <dataType>Boolean</dataType>
+            <fieldText>Generate Invoice</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn>UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <visibilityRule>
+                <conditionLogic>1</conditionLogic>
+                <conditions>
+                    <leftValueReference>Order_Number</leftValueReference>
+                    <operator>IsNull</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <helpText>&lt;p&gt;Order Screen Flow&lt;/p&gt;</helpText>
+        <nextOrFinishButtonLabel>Publish Event</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Order_Detail_Platform_Event_Flow</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+</Flow>
