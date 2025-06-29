@@ -1,4 +1,4 @@
-public with sharing class exceptionHandlerUtility {
+public with sharing class ExceptionHandlerUtility {
     
     public static void logException(Exception ex,string className,string methodName){
         string exDetails;
