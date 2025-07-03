@@ -1,4 +1,18 @@
 public with sharing class AccountController {
+
+
+    @AuraEnabled(cacheable = true)
+    public static List<Account> getAllAccounts(){
+        try{
+            if(!schema.sObjectType.Account.isAccessible()){
+                throw new customException('Login user donot have access to Account Object');
+            }
+        return [select Id,Name from Account WITH USER_MODE Limit 50000];
+        }catch(Exception ex){
+           throw new AuraHandledException(ex.getTypeName()+ex.getMessage());
+        }
+    }
+
     
     @AuraEnabled(cacheable=true)
     public static List<Account> getAccounts(string searchString){
@@ -13,48 +27,38 @@ public with sharing class AccountController {
             throw new AuraHandledException(e.getMessage());
         }
     }
+   
 
-    @AuraEnabled
-    public static resultWrapper getTestData(Integer recordsLimit,string lastRecId){
-        try {
-            Integer limitSet = recordsLimit;
-            string query ;
-            string lastRetrivedId = lastRecId;
-            if(string.isBlank(lastRetrivedId)){
-                query ='select Id,Name,NumberOfEmployees__c from TestData__c ORDER BY Id Limit :limitSet';
-            }else{
-                query ='select Id,Name,NumberOfEmployees__c from TestData__c where Id > :lastRetrivedId ORDER BY Id LIMIT :limitSet';
+    //get case and contact related data of specific account
+    @AuraEnabled(cacheable=true)
+    public static resultWrapper getRelatedData(string AccountId){
+        try{
+            if(string.isBlank(AccountId)){
+                throw new customException('Invalid Account Id');
             }
-            List<TestData__c> results = Database.query(query,AccessLevel.USER_MODE);
-            resultWrapper rW = new resultWrapper();
-            rW.recordsList = results;
-            for(Integer i=0;i<results.size();i++){
-                system.debug('recId- '+i+': '+results[i]);
+            ResultWrapper rwrap = new ResultWrapper();
+            if(Schema.SObjectType.Case.isAccessible()){
+                List<case>  caseList =[select Id,CaseNumber,Subject,Status from Case where AccountId = :AccountId and Status!= 'Closed'];
+                SObjectAccessDecision secureCaseRecs = Security.stripInaccessible(AccessType.READABLE, caseList);
+                rwrap.relatedCases = secureCaseRecs.getRecords();
             }
-            rW.lastRetrivedId = results[results.size()-1].Id;
-            return rW;
-        } catch (Exception e) {
-            throw new AuraHandledException(e.getMessage());
+            if(Schema.SobjectType.Contact.isAccessible()){
+                 List<Contact> contactList  = [Select Id,FirstName,LastName,Email,Phone from Contact where AccountId = :AccountId];
+                SObjectAccessDecision secureContactRecs = Security.stripInaccessible(AccessType.READABLE, contactList);
+                rwrap.relatedContacts = secureContactRecs.getRecords();
+             }
+             return rwrap;
+        }catch(Exception ex){
+            throw new AuraHandledException(ex.getMessage());
         }
     }
-    public with sharing class ResultWrapper{
-       @AuraEnabled public List<TestData__c> recordsList {get;set;}
-       @AuraEnabled public string lastRetrivedId {get;set;}
+    public class ResultWrapper {
+        @AuraEnabled public List<case> relatedCases;
+        @AuraEnabled public List<Contact> relatedContacts;
     }
+     //inner class to throw custom expections
+    public class customException extends Exception{
 
-    @AuraEnabled
-    public static void updateTestRecords(List<TestData__c> recordsList){
-       
-            if(recordsList.size()>0){
-                system.debug('recordList--> '+recordsList);
-                if(!Schema.SObjectType.TestData__c.isUpdateable()){
-                    throw new DmlException('Insufficient access to update TestData records');
-                }
-                SObjectAccessDecision securityDecision=Security.stripInaccessible(AccessType.UPDATABLE, recordsList);
-                List<TestData__c> recs = securityDecision.getRecords();
-                update recs;
-            }
-            
-        
     }
+   
 }

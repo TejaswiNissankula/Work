@@ -1,6 +1,6 @@
 import { LightningElement, wire } from 'lwc';
-import getTestData from '@salesforce/apex/AccountController.getTestData';
-import updateTestRecords from '@salesforce/apex/AccountController.updateTestRecords'
+import getTestData from '@salesforce/apex/TestDataController.getTestData';
+import updateTestRecords from '@salesforce/apex/TestDataController.updateTestRecords'
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import { reduceErrorsFunction } from 'c/reduceErrorsService';
 import { NavigationMixin, CurrentPageReference } from 'lightning/navigation';
