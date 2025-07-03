@@ -1,0 +1,30 @@
+<template>
+    <lightning-card title="Available Accounts">
+        <template lwc:if={accOptions}>
+            <lightning-combobox class="slds-var-p-around_small" style="width: 300px;" label="Accounts" name="Accounts" options={accOptions} value={selectedOption} onchange={handleAccChange}></lightning-combobox>
+            <div class="slds-text-heading_medium slds-var-p-around_medium">
+                Contact RelatedList
+            </div>
+            <template lwc:if={contactRecs}>
+                <lightning-datatable class="slds-var-p-horizontal_medium" key-field="Id"  data={contactRecs} columns={contactColumns} hide-checkbox-column></lightning-datatable>
+            </template>
+            <template lwc:else>
+                <p class="slds-var-p-around_small slds-text-align_center">No Contact Records to display</p>
+            </template>
+            
+            <div class="slds-text-heading_medium slds-var-p-around_medium"> 
+                Case RelatedList
+            </div>
+            <template lwc:if={caseRecs}>
+                <lightning-datatable class="slds-var-p-horizontal_medium" key-field="Id" data={caseRecs} columns={caseColumns} hide-checkbox-column></lightning-datatable>
+            </template>
+            <template lwc:else>
+                <p class="slds-var-p-around_small slds-text-align_center">No Case Records to display</p>
+            </template>
+            
+        </template>
+        <template lwc:elseif={error}>
+            <p>{error}</p>
+        </template>
+    </lightning-card>
+</template>
