@@ -59,7 +59,7 @@ export default class CustomAccountListView extends LightningElement {
         this.globalSelectedRowIds =[...this.globalSelectedRowIds];
     }
 
-    // need to update sort logic for each type : number,string,date,currency,phone.No logic in place .
+    // Sort Logic
     handleSort(event) {
         this.sortBy = event.detail.fieldName;
         this.sortDirection = event.detail.sortDirection;
