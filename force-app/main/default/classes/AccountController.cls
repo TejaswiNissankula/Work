@@ -5,7 +5,7 @@ public with sharing class AccountController {
     public static List<Account> getAllAccounts(){
         try{
             if(!schema.sObjectType.Account.isAccessible()){
-                throw new customException('Login user donot have access to Account Object');
+                throw new CustomException('Login user donot have access to Account Object');
             }
         return [select Id,Name from Account WITH USER_MODE Limit 50000];
         }catch(Exception ex){
@@ -55,10 +55,6 @@ public with sharing class AccountController {
     public class ResultWrapper {
         @AuraEnabled public List<case> relatedCases;
         @AuraEnabled public List<Contact> relatedContacts;
-    }
-     //inner class to throw custom expections
-    public class customException extends Exception{
-
     }
    
 }
