@@ -1,3 +1,11 @@
+/* 1.Design and implement an LWC to display list of opportunties.
+2.The component should allow users filter records based on stageName.
+3.By default, table should display Name,Amount,StageName.
+4.Opportunites should be sorted default by Amount and allow sorting based on other columns.
+5.StageName picklist should be dynamically populate with all unique stageName values from the opportunites retirved from salesforce,along with 'All Stages' option.
+6.Component provide dynamic toggle the visibility of the closeDate column.
+	1.when checkbox is checked , an additional column for closeDate should appear in lightning-datatable
+	2.when checkbox is unchecked,the closeDate should be hidden from lightning-datatable */ 
 import { LightningElement,wire } from 'lwc';
 
 //Object and field imports
