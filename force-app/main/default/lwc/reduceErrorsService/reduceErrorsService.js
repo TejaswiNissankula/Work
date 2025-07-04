@@ -29,8 +29,10 @@ export function reduceErrorsFunction(errors){
                 //Unknow error shape so try HTTP Status text
                 return error.statusText;
             })
-            // reduce array of strings to a single string 
-            .reduce((prev,curr)=> prev.concat(curr),[])
+            // reduce 1 level of array of strings to a single array of strings ex : [['a','b','c'],'d',['e','f']] turns to ['a', 'b', 'c', 'd', 'e', 'f']
+            //we can also use flat() (and pass level as 1 or 2 or infinity based on that it flatten array) instead of reduce and concat
+            //.reduce((prev,curr)=> prev.concat(curr),[])
+            .flat(1)
             .filter((message)=> !! message);
 
 
