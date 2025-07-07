@@ -22,7 +22,31 @@
 @isTest
 public class TestDataFactory {
 
-    
+    public static List<UserRole> createUserRoles(string Name,string parentRoleName,integer count){
+
+        List<UserRole> uRoleList = new List<UserRole>();
+        Id roleId = string.isNotBlank(parentRoleName)? getRoleId(parentRoleName) : null;
+        for(integer i=0;i<count;i++){
+            UserRole u =new UserRole(Name=Name+i);
+            u.ParentRoleId = roleId;
+            uRoleList.add(u);
+        }
+        return uRoleList;
+    }
+   /* public static Map<string,Id> getUserRoleIdMap(List<string> roleDevNameList){
+        
+        if(roleDevNameList != null && !roleDevNameList.isEmpty()){
+            Map<string,Id> userRoleDevNameIdMap = new Map<string,Id>();
+            for(useRole rec : [select Id,DeveloperName from UserRole where DeveloperName IN :roleDevNameList]){
+                userRoleDevNameIdMap.add(rec.DeveloperName,rec.Id);
+            }
+            return userRoleDevNameIdMap;
+        }   
+    }*/
+    public static Id getRoleId(string roleName){
+        return [select Id from UserRole where Name = :roleName]?.Id;
+    }
+   
     public static List<User> createUsers(Integer numUsers,string fName,string lName,string email,string userName, String profileName){
         List<User> users = new List<User>();
         for (Integer i = 0;i<numUsers;i++){
@@ -43,7 +67,7 @@ public class TestDataFactory {
         return users;
     }
     public static Id getProfileId(String profileName){
-        return [SELECT Id FROM Profile WHERE Name = :profileName LIMIT 1].Id;
+        return [SELECT Id FROM Profile WHERE Name = :profileName LIMIT 1]?.Id;
     }
        
     public static List<Automation_setting__c> createAutomationSetting(List<automationSettingWrapper> wrapList){
@@ -108,6 +132,15 @@ public class TestDataFactory {
             contList.add(cont);
         }
         return contList;
+    }
+
+    public static Case createCase(string status,string origin,string subject,string priority){
+        Case caseRec = new Case();
+        caseRec.Status =status;
+        caseRec.Subject = subject;
+        caseRec.Priority = priority;
+        caseRec.Origin = origin;
+        return caseRec;
     }
     
 }
