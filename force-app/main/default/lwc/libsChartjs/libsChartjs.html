@@ -1,0 +1,14 @@
+<template>
+    <lightning-card title="LibsChartjs" icon-name="custom:custom19">
+        <template lwc:if={message}>
+            <div class="custom-message-container slds-var-m-top_medium slds-media_center">
+                <div class={msgClass} role="alert">{message}</div>
+                <lightning-button-icon icon-name="utility:close" alternative-text="Dismiss" onclick={clearMessage}
+                    class="dismiss-button slds-p-around_none"></lightning-button-icon>
+            </div>
+        </template>
+        <div class="chart slds-var-m-around_medium" lwc:dom="manual"></div>
+        <lightning-button class="slds-var-p-around_medium" label="Save as image"
+            onclick={handleClick}></lightning-button>
+    </lightning-card>
+</template>
