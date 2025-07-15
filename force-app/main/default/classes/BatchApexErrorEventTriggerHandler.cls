@@ -8,12 +8,22 @@ public with sharing class BatchApexErrorEventTriggerHandler {
         Map<Id,AsyncApexJob> asyncapexMap = new Map<Id,AsyncApexJob>([select Id,ApexClass.Name from AsyncApexJob where Id IN : jobIds]);
         List<Task> taskList = new List<Task>();
         for(BatchApexErrorEvent event : errorEventList){
-            if(asyncapexMap.get(event.asyncApexJobId).ApexClass.Name == 'BatchApexErrorHandWithPlatformEvents'){
+            if(asyncapexMap.get(event.asyncApexJobId).ApexClass.Name == 'BatchApexErrorHandWithPlatformEvents'
+            ){
                 for(string recId: event.JobScope.split(',')){
                     Task t = new Task();
                     t.whatId = (Id)recId;
                     t.subject=event.ExceptionType;
                     t.description = event.Phase+':'+event.message;
+                    taskList.add(t);
+                }
+            }else if (asyncapexMap.get(event.asyncApexJobId).ApexClass.Name == 'BatchApexTotalRevenueByRep'){
+                for(string rec: event.JobScope.split(',')){
+                    Task t = new Task();
+                   // t.whatId = (Id)recId;
+                    t.subject=event.ExceptionType;
+                    t.description = event.Phase+':'+event.message+rec;//rec hold aggregate record of string formate
+                   // t.OwnerId ='005aj00000HGVIzAAP';// owner will be automated process user
                     taskList.add(t);
                 }
             }
